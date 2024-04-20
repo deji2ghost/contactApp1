@@ -96,7 +96,7 @@ export const Contactpage = (props) => {
         <Contactform clicked={clicked} setClicked={setClicked} addContact={addContact} />
 
         <div className='w-full mt-4'>
-            <div className='grid grid-cols-5 w-[90%] gap-8 text-left mx-auto'>
+            <div className='grid grid-cols-5 w-[90%] gap-16 text-left mx-auto'>
                 <input 
                     type='checkbox'
                     className='w-[20%] md:w-4'
@@ -112,7 +112,7 @@ export const Contactpage = (props) => {
                 search.map(contact => {
                     const editContact = <Editcontact showEdit={showEdit} setShowEdit={setShowEdit} showModal={showModal} setShowModal={setShowModal} EditContact={EditContact} id={contact.id} firstName={contact.firstName} lastName={contact.lastName} email={contact.email} phoneNumber={contact.phoneNumber}/>
                     return(
-                        <div key={contact.id} className='grid grid-cols-5 w-[90%] gap-8 text-left mx-auto items-center'>
+                        <div key={contact.id} className='grid grid-cols-5 w-[90%] gap-16 text-left mx-auto items-center'>
                             <input 
                                 type='checkbox'
                                 className='w-[20%] md:w-4'
