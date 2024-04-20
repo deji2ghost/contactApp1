@@ -17,21 +17,23 @@ export const Contactlist = (props) => {
                 props.showDetail(props.id)
                 props.setShowModal(!props.showModal)
             }}
-            className='overflow-clip cursor-pointer'
-        >{props.firstName}{props.lastName}</h1>
+            className='overflow-hidden w-[300%] cursor-pointer flex flex-col'
+        ><span>{props.firstName}</span>
+            <span>{props.lastName}</span>
+        </h1>
         <h1
             onClick={() => {
                 props.showDetail(props.id)
                 props.setShowModal(!props.showModal)
             }}
-            className='overflow-clip cursor-pointer'
+            className='overflow-hidden w-[300%] cursor-pointer flex flex-col'
         >{props.email}</h1>
         <h1
             onClick={() => {
                 props.showDetail(props.id)
                 props.setShowModal(!props.showModal)
             }}
-            className='overflow-clip cursor-pointer'
+            className='overflow-hidden w-[300%] cursor-pointer flex flex-col'
         >{props.phoneNumber}</h1>
         <FontAwesomeIcon
         className='cursor-pointer'

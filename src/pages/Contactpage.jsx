@@ -96,10 +96,10 @@ export const Contactpage = (props) => {
         <Contactform clicked={clicked} setClicked={setClicked} addContact={addContact} />
 
         <div className='w-full mt-4'>
-            <div className='grid grid-cols-5 w-[90%] gap-16 text-left mx-auto'>
+            <div className='grid grid-cols-5 w-[90%] gap-16 text-left mx-auto text-2xl'>
                 <input 
                     type='checkbox'
-                    className='w-[20%] md:w-4'
+                    className='w-[100%] md:w-4'
                     name='allselect'
                     onClick={() => setShowDelete(!showDelete)}
                     onChange={checkboxHandler}
@@ -115,7 +115,7 @@ export const Contactpage = (props) => {
                         <div key={contact.id} className='grid grid-cols-5 w-[90%] gap-16 text-left mx-auto items-center'>
                             <input 
                                 type='checkbox'
-                                className='w-[20%] md:w-4'
+                                className='w-[100%] md:w-4'
                                 name={contact.id}
                                 checked={contact.isChecked || false}
                                 onChange={checkboxHandler}
