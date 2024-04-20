@@ -28,10 +28,10 @@ export const Contactform = (props) => {
         }
     }, [isSubmitSuccessful, reset])
   return (
-    <div className={props.clicked ? 'visible' : 'hidden'}>
+    <div>
         <div 
             className={`${props.clicked ? 'visible' : 'hidden'} bg-black bg-opacity-20 absolute left-0 top-0 w-full h-screen`}
-            onClick={() => props.setShowModal(!props.showModal)}
+            onClick={() => props.setClicked(!props.clicked)}
         ></div>
         <div className={`${props.clicked ? 'visible' : 'hidden'} z-10 bg-slate-50 rounded-md py-4 px-3 w-4/5 mx-auto absolute left-0 right-0 top-1/2 -translate-y-1/2`}>
             <h1 className='text-center border-b border-blue-400 py-3'>ADD CONTACT</h1>
@@ -44,6 +44,7 @@ export const Contactform = (props) => {
                         placeholder='Enter Your First Name Here' 
                         {...register('firstName')}
                     />
+                    <p className={`${errors.firstName ? 'visible' : 'hidden'} text-red-600`}>{errors.firstName?.message}</p>
                 </div>
                 <div className='flex flex-col my-5'>
                     <label>Last Name</label>
@@ -53,6 +54,7 @@ export const Contactform = (props) => {
                         placeholder='Enter Your Last Name Here' 
                         {...register('lastName')}
                     />
+                    <p className={`${errors.lastName ? 'visible' : 'hidden'} text-red-600`}>{errors.lastName?.message}</p>
                 </div>
                 <div className='flex flex-col my-5'>
                     <label>Email Address</label>
@@ -62,6 +64,7 @@ export const Contactform = (props) => {
                         placeholder='Enter Your Email Address Here' 
                         {...register('email')}
                     />
+                    <p className={`${errors.email ? 'visible' : 'hidden'} text-red-600`}>{errors.email?.message}</p>
                 </div>
                 <div className='flex flex-col my-5'>
                     <label>Phone Number</label>
@@ -71,6 +74,7 @@ export const Contactform = (props) => {
                         placeholder='Enter Your Phone Number Here' 
                         {...register('phoneNumber')}
                     />
+                    <p className={`${errors.phoneNumber ? 'visible' : 'hidden'} text-red-600`}>{errors.phoneNumber?.message}</p>
                 </div>
 
                 <div className='flex items-center justify-center'>
@@ -79,8 +83,11 @@ export const Contactform = (props) => {
                         className='mx-auto bg-slate-300 rounded-md p-3 w-2/5'
                     >Cancel</button>
                     <button 
-                        onClick={() => props.setClicked(!props.clicked)}
-                        disabled={!isValid || isSubmitting} 
+                        onClick={() => 
+                            {
+                                props.setClicked(!props.clicked)
+                            }}
+                        disabled={isSubmitting} 
                         className='mx-auto bg-blue-800 rounded-md p-3 w-2/5'
                     >Add Contact</button>
                 </div>

@@ -14,6 +14,7 @@ export const Contactpage = (props) => {
     const [details, setDetails] = useState()
     const [showModal, setShowModal] = useState(false)
     const [showEdit, setShowEdit] = useState(false)
+    const [ deleteA, setDeleteA ] = useState(false)
     console.log(showDelete)
 
 
@@ -50,18 +51,17 @@ export const Contactpage = (props) => {
 
     const deleteAll = () => {
         setContacts(newContacts)
+        setDeleteA(!deleteA)
     }
 
-    const checkboxHandler = (name, check) => {
-        // const {name, checked } = e.target
+    const checkboxHandler = (e) => {
+        const {name, checked } = e.target
         if (name === 'allselect'){
-            let tempUser = contacts.map(contact => {return {...contact, isChecked: check}})
+            let tempUser = contacts.map(contact => {return {...contact, isChecked: checked}})
             setContacts(tempUser)
-        }else{
-            let tempUser = contacts.map(contact => 
-                contact.id === name ? {...contact, isChecked: check} : contact
-            )
-        setContacts(tempUser)
+        }else if(deleteA === true){
+            let tempUser = contacts.map(contact => {return {...contact, isChecked: !checked}})
+            setContacts(tempUser)
         }
     }
 
@@ -77,26 +77,26 @@ export const Contactpage = (props) => {
         <div className='w-4/5 mx-auto flex flex-col mt-4 md:flex-row'>
             <input 
                 type='text' 
-                className='bg-gray-200 w-[50%] outline-none rounded-md px-3 py-2 md:w-[40%] md:px-3'
+                className='bg-gray-200 w-full outline-none rounded-md px-3 py-2 md:w-[40%] md:px-3'
                 value={searchValue} 
                 onChange={(e) => setSearchValue(e.target.value)}
             />
-            <div className='flex my-3'>
+            <div className='flex my-3 justify-between'>
                 <button
-                    className='bg-blue-800 px-3 py-2 rounded-md w-[50%] md:w-full md:py-2 md:px-2 md:mx-2'
+                    className='bg-blue-800 px-3 py-2 rounded-md w-[45%] md:w-full md:py-2 md:px-2 md:mx-2'
                     onClick={showModa}
                 >Add Contact</button>
                 <button
-                    onClick={() => deleteAll()}
-                    className={`${showDelete ? 'visible' : 'hidden'} bg-blue-800 px-3 py-2 rounded-md w-[50%] md:w-full md:py-2 md:px-2 md:mx-2`}
+                    onClick={deleteAll}
+                    className={`${showDelete ? 'visible' : 'hidden'} bg-blue-800 px-3 py-2 rounded-md w-[45%] md:w-full md:py-2 md:px-2 md:mx-2`}
                 >Delete All</button>
             </div>
         </div>
         
-        <Contactform clicked={clicked} setClicked={setClicked} addContact={addContact}/>
+        <Contactform clicked={clicked} setClicked={setClicked} addContact={addContact} />
 
         <div className='w-full mt-4'>
-            <div className='grid grid-cols-5 gap-3 w-[90%] mx-auto'>
+            <div className='grid grid-cols-5 w-[90%] gap-8 text-left mx-auto'>
                 <input 
                     type='checkbox'
                     className='w-[20%] md:w-4'
@@ -104,15 +104,22 @@ export const Contactpage = (props) => {
                     onClick={() => setShowDelete(!showDelete)}
                     onChange={checkboxHandler}
                 />
-                <h1>FULLNAME</h1>
-                <h1>EMAIL</h1>
-                <h1>PHONE</h1>
+                <h1 className='text-sm'>FULLNAME</h1>
+                <h1 className='text-sm'>EMAIL</h1>
+                <h1 className='text-sm'>PHONE</h1>
             </div>
             {
                 search.map(contact => {
                     const editContact = <Editcontact showEdit={showEdit} setShowEdit={setShowEdit} showModal={showModal} setShowModal={setShowModal} EditContact={EditContact} id={contact.id} firstName={contact.firstName} lastName={contact.lastName} email={contact.email} phoneNumber={contact.phoneNumber}/>
                     return(
-                        <div key={contact.id} className='grid grid-cols-5 w-[90%] gap-3 mx-auto items-center'>
+                        <div key={contact.id} className='grid grid-cols-5 w-[90%] gap-8 text-left mx-auto items-center'>
+                            <input 
+                                type='checkbox'
+                                className='w-[20%] md:w-4'
+                                name={contact.id}
+                                checked={contact.isChecked || false}
+                                onChange={checkboxHandler}
+                            />
                             <Contactlist 
                                 id={contact.id} 
                                 firstName={contact.firstName} 

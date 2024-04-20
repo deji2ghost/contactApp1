@@ -3,21 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react'
 
 export const Contactlist = (props) => {
-    const handleChange = (e) => {
-        const { name, checked } = e.target;
-        props.checkboxHandler(name, checked)
-    }
+    // const handleChange = (e) => {
+    //     const { name, checked } = e.target;
+    //     props.checkboxHandler(name, checked)
+    // }
 
 
   return (
     <>
-        <input 
-            type='checkbox'
-            className='w-[20%] md:w-4'
-            name={props.id}
-            checked={props?.isChecked || false}
-            onChange={handleChange}
-        />
+        
         <h1
             onClick={() => {
                 props.showDetail(props.id)
