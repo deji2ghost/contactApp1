@@ -87,7 +87,7 @@ export const Contactform = (props) => {
                             {
                                 props.setClicked(!props.clicked)
                             }}
-                        disabled={isSubmitting} 
+                        disabled={!isValid || isSubmitting} 
                         className='mx-auto bg-blue-800 rounded-md p-3 w-2/5'
                     >Add Contact</button>
                 </div>
